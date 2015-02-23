@@ -1,0 +1,20 @@
+---
+- name: deploy mysql source code
+  get_url:
+    url: "{{ mysql_code_url }}"
+    dest: /tmp/
+  register: downloaded_tarball
+
+- name: ensure deploy directory existence
+  file:
+    path: "{{ code_deploy_directory }}/"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: unarchive code
+  unarchive:
+    src: "{{ downloaded_tarball.dest }}"
+    dest: "{{ code_deploy_directory }}/"
+    copy: no

@@ -1,0 +1,12 @@
+---
+build_packages:
+  - cmake.x86_64
+  - gcc.x86_64
+  - gcc-c++.x86_64
+  - ncurses-devel.x86_64
+  - bison.x86_64
+
+mysql_version: 5.5.41
+mysql_code_url: http://downloads.mysql.com/archives/get/file/mysql-{{ mysql_version }}.tar.gz
+
+code_deploy_directory: /opt

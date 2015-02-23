@@ -1,0 +1,12 @@
+---
+- include: 'pkg_install_to_build.yml'
+  tags: install
+  sudo: true
+
+- include: 'deploy_code.yml'
+  tags: deploy
+  sudo: true
+
+- include: 'build.yml'
+  tags: build
+  sudo: true

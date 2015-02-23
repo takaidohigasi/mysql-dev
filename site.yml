@@ -1,0 +1,5 @@
+---
+- hosts: db-server
+  gather_facts: false
+  roles:
+  - mysql-dev 
