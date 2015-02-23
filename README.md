@@ -55,9 +55,11 @@ $ ansible-playbook site.yml
 you can also run script partially as follows
 
 ```bash
-$ ansible-playbook site.yml -t install
-$ ansible-playbook site.yml -t deploy
+$ ansible-playbook site.yml -t pkg_install
+$ ansible-playbook site.yml -t setup_user
+$ ansible-playbook site.yml -t deploy_code
 $ ansible-playbook site.yml -t build
+$ ansible-playbook site.yml -t install_db
 ```
 
 ### Operations

@@ -1,0 +1,6 @@
+---
+- include: pkg_install/debian.yml
+  when: "ansible_os_family == 'Debian'"
+
+- include: pkg_install/redhat.yml
+  when: "ansible_os_family == 'RedHat'"

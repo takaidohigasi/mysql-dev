@@ -1,9 +1,9 @@
 ---
-- name: create cmake option
+- name: Create cmake option
   set_fact:
     opt_str: "-D{{ item.key }}={{ item.value }}"
   register: result
-  with_dict: "{{ cmake_options }}"
+  with_dict: cmake_options
 
 # @see http://dev.mysql.com/doc/refman/5.6/en/source-installation.html
 - name: cmake / make / make install

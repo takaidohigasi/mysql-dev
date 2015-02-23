@@ -1,0 +1,7 @@
+---
+build_packages:
+  - cmake.x86_64
+  - gcc.x86_64
+  - gcc-c++.x86_64
+  - ncurses-devel.x86_64
+  - bison.x86_64
