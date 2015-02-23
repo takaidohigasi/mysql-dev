@@ -67,3 +67,7 @@ you can login to the deployed vm as follows
 ```bash
 $ vagrant ssh db-server
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/takaidohigasi/mysql-dev/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
