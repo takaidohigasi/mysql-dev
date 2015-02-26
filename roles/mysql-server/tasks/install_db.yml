@@ -1,2 +1,35 @@
 ---
-# TODO: implement mysql install_db operation
+# @see http://dev.mysql.com/doc/refman/5.6/en/source-installation.html
+- name: Set directory privileges
+  file:
+    path: "{{ mysql_base_directory }}"
+    state: directory
+    owner: "{{ mysql_user }}"
+    group: "{{ mysql_group }}"
+    recurse: true
+
+- name: Install database
+  command: ./scripts/mysql_install_db --user="{{ mysql_user}}"
+  args:
+    chdir: "{{ mysql_base_directory }}"
+
+- name: Change directory owners
+  file:
+    path: "{{ mysql_base_directory }}"
+    state: directory
+    owner: root
+    recurse: true
+- file:
+    path: "{{ mysql_base_directory }}/data"
+    state: directory
+    owner: "{{ mysql_group }}"
+    recurse: true
+
+- name: Setup init script
+  command: cp "{{ mysql_base_directory }}"/support-files/mysql.server /etc/init.d/mysql.server
+
+- name: Setup path for mysql commands
+  file:
+    src: "{{ mysql_base_directory }}/bin/*"
+    dest: /usr/bin
+    state: link
