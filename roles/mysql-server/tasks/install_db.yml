@@ -8,28 +8,38 @@
     group: "{{ mysql_group }}"
     recurse: true
 
-- name: Install database
-  command: ./scripts/mysql_install_db --user="{{ mysql_user}}"
+# http://dev.mysql.com/doc/refman/5.6/en/mysql-install-db.html
+- name: Initialize MySQL data directory
+  command: ./scripts/mysql_install_db --user="{{ mysql_user}}" --basedir="{{ mysql_base_directory }}" --datadir="{{ mysql_data_directory }}"
   args:
     chdir: "{{ mysql_base_directory }}"
 
-- name: Change directory owners
+- name: Change directory owners for mysql base/data directory
   file:
-    path: "{{ mysql_base_directory }}"
+    path: "{{ item.value.path }}"
     state: directory
-    owner: root
+    owner: "{{ item.value.owner }}"
+    group: "{{ mysql_group}}"
     recurse: true
-- file:
-    path: "{{ mysql_base_directory }}/data"
-    state: directory
-    owner: "{{ mysql_group }}"
-    recurse: true
+  with_dict:
+    base_dir:
+      path: "{{ mysql_base_directory }}"
+      owner: root
+    data_dir:
+      path: "{{ mysql_data_directory }}"
+      owner: "{{ mysql_group }}"
 
 - name: Setup init script
-  command: cp "{{ mysql_base_directory }}"/support-files/mysql.server /etc/init.d/mysql.server
+  command: cp "{{ mysql_base_directory }}/support-files/mysql.server" "/etc/init.d/mysql"
 
+# I will replace this to the PATH settings
 - name: Setup path for mysql commands
   file:
-    src: "{{ mysql_base_directory }}/bin/*"
-    dest: /usr/bin
+    src: "{{ mysql_base_directory }}/bin/mysql"
+    dest: /usr/bin/mysql
     state: link
+
+- name: Copy my.cnf
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf

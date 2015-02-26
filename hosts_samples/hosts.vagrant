@@ -4,4 +4,5 @@
 
 [all:vars]
 ansible_ssh_user=vagrant
+# @note be careful placement of secret key is changed between vagrant 1.6 and 1.7
 ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key

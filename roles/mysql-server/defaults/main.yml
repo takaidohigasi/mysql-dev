@@ -11,3 +11,4 @@ cmake_options:
 
 code_deploy_directory: /opt
 mysql_base_directory: /usr/local/mysql
+mysql_data_directory: /var/lib/mysql/data
