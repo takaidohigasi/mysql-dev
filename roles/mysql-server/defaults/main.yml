@@ -5,7 +5,7 @@ mysql_code_url: http://downloads.mysql.com/archives/get/file/mysql-{{ mysql_vers
 # please add options for cmake
 # @see http://dev.mysql.com/doc/refman/5.6/en/source-configuration-options.html
 cmake_options:
-  DEFAULT_CHARSET: utf-8
+  DEFAULT_CHARSET: utf8
   DEFAULT_COLLATION: utf8_general_ci
   WITH_DEBUG: true
 
