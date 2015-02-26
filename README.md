@@ -1,5 +1,5 @@
 # mysql-dev
-codes for creating mysql developing environment
+codes to create mysql develop environment
 
 ## Requirement
 
@@ -26,21 +26,21 @@ $ vim roles/mysql-dev/defaults/main.yml
 
 ### Virtual Machine Operation
 
-deploy virtual machine and provision
+you can deploy and provision virtual machine.
 
 ```bash
 $ vagrant up
 ```
 
-destroy operation is as follows (you can also use -f option to destroy)
+you can destroy virtual machines as follows (you can also use -f option to destroy without confirmation)
 ```bash
 $ vagrant halt
 $ vagrant destroy
 ```
 
-### Provisioning
+### Provision
 
-you can also provision by following command
+you can also provision by following command.
 
 ```bash
 $ vagrant provision
