@@ -16,6 +16,8 @@
   tags: deploy_code
   sudo: true
 
+# restart/test is triggerred
+# @note test tag runs only test.
 - include: 'build.yml'
   tags: build
   sudo: true

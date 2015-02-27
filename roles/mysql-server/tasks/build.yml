@@ -14,6 +14,26 @@
     - "cmake . {{ result.results | join(' ', attribute='ansible_facts.opt_str') }}"
     - 'make'
     - 'make install'
+
+# this owner setting operation duplicates the first one of install_db,
+# but this is for rebuild operation triggered -t build
+- name: Change directory owners for mysql base/data directory
+  file:
+    path: "{{ item.value.path }}"
+    state: directory
+    owner: "{{ item.value.owner }}"
+    group: "{{ mysql_group }}"
+    recurse: true
+  with_dict:
+    base_dir:
+      path: "{{ mysql_base_directory }}"
+      owner: root
+    # we should also take data_dir into consideration in case it is subdirectory of base directory.
+    data_dir:
+      path: "{{ mysql_data_directory }}"
+      owner: "{{ mysql_group }}"
   # restart after build
   notify: restart mysql server
+  # also check test status
   notify: run mysql test
+  tags: test
