@@ -21,17 +21,17 @@
   file:
     path: "{{ item.value.path }}"
     state: directory
-    owner: "{{ item.value.owner }}"
-    group: "{{ mysql_group }}"
+    owner: "{{ mysql_user }}"
+    group: "{{ item.value.group }}"
     recurse: true
   with_dict:
     base_dir:
       path: "{{ mysql_base_directory }}"
-      owner: root
+      group: root
     # we should also take data_dir into consideration in case it is subdirectory of base directory.
     data_dir:
       path: "{{ mysql_data_directory }}"
-      owner: "{{ mysql_group }}"
+      group: "{{ mysql_group }}"
   # restart after build
   notify: restart mysql server
   # also check test status
