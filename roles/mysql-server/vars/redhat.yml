@@ -5,3 +5,5 @@ build_packages:
   - gcc-c++.x86_64
   - ncurses-devel.x86_64
   - bison.x86_64
+  # needed for mysql-test
+  - perl-Time-HiRes

@@ -9,10 +9,11 @@
 - name: cmake / make / make install
   command: "{{ item }}"
   args:
-    chdir: "{{ code_deploy_directory }}/mysql-{{ mysql_version}}"
+    chdir: "{{ code_deploy_directory }}/mysql-{{ mysql_version }}"
   with_items:
-    - "cmake . {{ result.results | join(' ', attribute='ansible_facts.opt_str')}}"
+    - "cmake . {{ result.results | join(' ', attribute='ansible_facts.opt_str') }}"
     - 'make'
     - 'make install'
   # restart after build
   notify: restart mysql server
+  notify: run mysql test

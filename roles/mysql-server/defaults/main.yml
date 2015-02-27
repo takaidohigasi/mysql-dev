@@ -14,3 +14,7 @@ code_deploy_directory: /vagrant/src
 
 mysql_base_directory: /usr/local/mysql
 mysql_data_directory: /var/lib/mysql/data
+
+test_env:
+  LANG: en_US.UTF-8
+  LC_ALL: en_US.UTF-8
