@@ -69,3 +69,6 @@ you can login to the deployed vm as follows
 ```bash
 $ vagrant ssh db-server
 ```
+
+mysql code is deployed for /vagrant directory by default which is shared between host and guest.
+you can modify code on the host.

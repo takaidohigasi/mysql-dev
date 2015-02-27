@@ -1,2 +1,5 @@
 .idea
 .vagrant
+
+# ignore code deployed on the shared directory
+src

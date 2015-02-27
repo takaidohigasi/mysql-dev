@@ -9,6 +9,8 @@ cmake_options:
   DEFAULT_COLLATION: utf8_general_ci
   WITH_DEBUG: true
 
-code_deploy_directory: /opt
+# /vagrant is shared directory between host and guest
+code_deploy_directory: /vagrant/src
+
 mysql_base_directory: /usr/local/mysql
 mysql_data_directory: /var/lib/mysql/data
