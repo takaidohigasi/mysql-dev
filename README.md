@@ -70,5 +70,8 @@ you can login to the deployed vm as follows
 $ vagrant ssh db-server
 ```
 
-mysql code is deployed for /vagrant directory by default which is shared between host and guest.
-you can modify code on the host.
+## Features
+
+- you can develop / debug mysql independently from you local machine.
+- you don't need to care build environment because all the stuff needed is installed automatically.
+- you can edit code on your host machine and run mysql on guest (code is deployed shared directory)
