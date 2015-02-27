@@ -1,5 +1,7 @@
 ---
 - include_vars: "{{ ansible_os_family|lower }}.yml"
+  tags:
+    - pkg_install
 
 # TODO: this should be overwritten by include + with_items after ansible 2.0 release
 - include: 'pkg_install.yml'
