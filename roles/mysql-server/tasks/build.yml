@@ -14,3 +14,5 @@
     - "cmake . {{ result.results | join(' ', attribute='ansible_facts.opt_str')}}"
     - 'make'
     - 'make install'
+  # restart after build
+  notify: restart mysql server

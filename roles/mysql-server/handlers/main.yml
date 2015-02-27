@@ -1,0 +1,15 @@
+---
+# return code is true even if server is already started
+# -
+# [vagrant@mysql-server ~]$ sudo /etc/init.d/mysql stop
+# Shutting down MySQL. SUCCESS!
+# [vagrant@mysql-server ~]$ sudo /etc/init.d/mysql restart
+# ERROR! MySQL server PID file could not be found!
+# Starting MySQL.. SUCCESS!
+# [vagrant@mysql-server ~]$ echo $?
+# 0
+- name: restart mysql server
+  command: /etc/init.d/mysql restart
+  sudo: true
+
+# @see http://dev.mysql.com/doc/mysqltest/2.0/en/mysql-test-run-pl.html
