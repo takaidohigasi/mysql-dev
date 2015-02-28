@@ -1,5 +1,5 @@
 ---
-- name: Deploy mysql source code
+- name: Download mysql source code
   get_url:
     url: "{{ mysql_code_url }}"
     dest: /tmp/
@@ -7,14 +7,22 @@
 
 - name: Ensure deploy directory existence
   file:
-    path: "{{ code_deploy_directory }}/"
+    path: "{{ item }}"
     state: directory
     owner: root
     group: root
     mode: 0755
+  with_items:
+    - "{{ code_build_directory }}"
+    - "{{ code_share_directory }}"
 
 - name: Unarchive code
   unarchive:
     src: "{{ downloaded_tarball.dest }}"
-    dest: "{{ code_deploy_directory }}/"
+    dest: "{{ code_build_directory }}/"
     copy: no
+
+- name: Copy code to the share directory
+  command: rsync -rv --delete \
+             "{{ code_build_directory }}/mysql-{{ mysql_version }}" \
+             "{{ code_share_directory }}/"

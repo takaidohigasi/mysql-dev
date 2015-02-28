@@ -7,10 +7,11 @@ mysql_code_url: http://downloads.mysql.com/archives/get/file/mysql-{{ mysql_vers
 cmake_options:
   DEFAULT_CHARSET: utf8
   DEFAULT_COLLATION: utf8_general_ci
-  WITH_DEBUG: true
+  WITH_DEBUG: 'true'
 
 # /vagrant is shared directory between host and guest
-code_deploy_directory: /vagrant/src
+code_share_directory: /vagrant/src
+code_build_directory: /opt/src
 
 mysql_base_directory: /usr/local/mysql
 mysql_data_directory: /var/lib/mysql/data

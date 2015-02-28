@@ -19,5 +19,5 @@
 - name: run mysql test
   command: ./mysql-test-run
   args:
-    chdir: "{{ code_deploy_directory }}/mysql-{{ mysql_version }}/mysql-test"
+    chdir: "{{ code_build_directory }}/mysql-{{ mysql_version }}/mysql-test"
   environment: "{{ test_env }}"
