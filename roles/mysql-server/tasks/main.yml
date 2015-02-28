@@ -6,20 +6,21 @@
 # TODO: this should be overwritten by include + with_items after ansible 2.0 release
 - include: 'pkg_install.yml'
   tags: pkg_install
-  sudo: true
 
 - include: 'setup_user.yml'
   tags: setup_user
-  sudo: true
 
 - include: 'deploy_code.yml'
   tags: deploy_code
-  sudo: true
 
+# restart is triggerred
 - include: 'build.yml'
   tags: build
-  sudo: true
 
+- include: 'test.yml'
+  when: skip_tests != True
+  tags: test
+
+# restart is triggered
 - include: 'install_db.yml'
   tags: install_db
-  sudo: true

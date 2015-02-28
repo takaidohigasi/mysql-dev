@@ -1,4 +1,9 @@
 ---
+- name: Copy code to the build directory (copy back assume code was changed)
+  command: rsync -rv --delete \
+             "{{ code_share_directory }}/mysql-{{ mysql_version }}/" \
+             "{{ code_build_directory }}/mysql-{{ mysql_version }}/"
+
 - name: Create cmake option
   set_fact:
     opt_str: "-D{{ item.key }}={{ item.value }}"
@@ -9,11 +14,9 @@
 - name: cmake / make / make install
   command: "{{ item }}"
   args:
-    chdir: "{{ code_deploy_directory }}/mysql-{{ mysql_version }}"
+    chdir: "{{ code_build_directory }}/mysql-{{ mysql_version }}"
   with_items:
     - "cmake . {{ result.results | join(' ', attribute='ansible_facts.opt_str') }}"
     - 'make'
     - 'make install'
-  # restart after build
   notify: restart mysql server
-  notify: run mysql test

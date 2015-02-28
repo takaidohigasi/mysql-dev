@@ -1,0 +1,23 @@
+---
+# this owner setting operation duplicates the first one of install_db,
+# but this is for rebuild operation triggered -t build
+- name: Change directory owners for mysql base/data directory
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner }}"
+    group: "{{ mysql_group }}"
+    recurse: true
+  with_items:
+    - path: "{{ mysql_base_directory }}"
+      owner: root
+    # we should also take data_dir into consideration in case it is subdirectory of base directory.
+    - path: "{{ mysql_data_directory }}"
+      owner: "{{ mysql_group }}"
+
+# @see http://dev.mysql.com/doc/mysqltest/2.0/en/mysql-test-run-pl.html
+- name: run mysql test
+  command: ./mysql-test-run
+  args:
+    chdir: "{{ code_build_directory }}/mysql-{{ mysql_version }}/mysql-test"
+  environment: "{{ test_env }}"
