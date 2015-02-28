@@ -7,6 +7,7 @@ codes to create mysql develop environment
 - Vagrant
  - centos box image
 
+
 ## Install & Setup
 
 - Vagrant
@@ -72,14 +73,17 @@ $ ansible-playbook site.yml -t setup_user
 # deploy code
 $ ansible-playbook site.yml -t deploy_code
 
-# build code, run tests, and restart mysql server
-$ ansible-playbook site.yml -t build
-
 # initialize data directory and restart mysql server
 $ ansible-playbook site.yml -t install_db
 
+# build code and restart mysql server
+$ ansible-playbook site.yml -t build
+
 # run tests
 $ ansible-playbook site.yml -t test
+
+# build code, run tests, and restart mysql server
+$ ansible-playbook site.yml -t build,test
 ```
 
 ### Operations

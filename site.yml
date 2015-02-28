@@ -2,3 +2,5 @@
 - hosts: mysql-server
   roles:
     - mysql-server
+  sudo: true
+
