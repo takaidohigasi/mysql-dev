@@ -21,4 +21,4 @@ test_env:
   LC_ALL: en_US.UTF-8
 
 # please change this config to True if you want to skip tests
-skip_tests: False
+skip_tests: True
